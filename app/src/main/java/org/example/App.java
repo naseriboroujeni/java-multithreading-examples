@@ -4,11 +4,23 @@
 package org.example;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        Thread myThread = new Thread(()->{
+            for (int i = 0; i < 10; i++) {
+                
+                System.out.println("Inside the thread");
+            }
+        });
+        myThread.setName("Reza");
+        myThread.setPriority(Thread.MAX_PRIORITY);
+        Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
+        System.out.println("Befor thread " + myThread.getName());
+        myThread.start();
+        Thread.yield();
+        for (int i = 0; i < 10; i++) {
+            
+            System.out.println("After thread " + myThread.getName());
+        }
     }
 }
