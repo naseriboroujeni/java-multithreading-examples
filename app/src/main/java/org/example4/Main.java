@@ -11,5 +11,12 @@ public class Main {
                   new BigInteger("200000000")));
       longComputationThread.start();
       longComputationThread.interrupt();
+
+      Thread longComputationThread2 = new Thread(
+            new LongComputationTask(
+                  new BigInteger("20000"),
+                  new BigInteger("200000000")));
+      longComputationThread2.setDaemon(true);
+      longComputationThread2.start();
    }
 }
