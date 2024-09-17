@@ -14,7 +14,7 @@ public class Main {
         incrementorThread.join();
         decrementorThread.join();
 
-        System.out.println(inventoryCounter.getCount());
+        System.out.println("Total Count: " + inventoryCounter.getCount());
     }
 
     public static class IncrementorThread extends Thread {
@@ -56,10 +56,12 @@ public class Main {
         }
 
         public void increment() {
-            count++;
+            synchronized (this) {
+                count++;
+            }
         }
 
-        public void decrement() {
+        public synchronized void decrement() {
             count--;
         }
 
@@ -67,6 +69,4 @@ public class Main {
             return count;
         }
     }
-
-
 }
